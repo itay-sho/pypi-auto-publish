@@ -31,6 +31,16 @@ def parse_arguments() -> argparse.Namespace:
         "--pkg_name",
         help="Package to search.",
     )
+    parser.add_argument(
+        "--local_pkg_name",
+        help="Local version to compare.",
+        default=None,
+    )
+    parser.add_argument(
+        "--pypi_pkg_name",
+        help="PyPI version to compare.",
+        default=None,
+    )
     return parser.parse_args()
 
 
@@ -40,18 +50,20 @@ def main():
 
     args = parse_arguments()
     pkg_name = args.pkg_name
+    local_pkg_name = args.local_pkg_name if len(args.local_pkg_name) > 0 else pkg_name
+    pypi_pkg_name = args.pypi_pkg_name if len(args.pypi_pkg_name) > 0 else pkg_name
 
     if not pkg_name:  # pkg name and module names should match if missing
         pkg_name = find_pkg_name()
 
-    local_version = get_local_version(pkg_name)
-    pypi_version = get_pypi_version(pkg_name)
+    local_pkg_name = get_local_version(local_pkg_name)
+    pypi_version = get_pypi_version(pypi_pkg_name)
 
-    set_output("version", local_version)
+    set_output("version", local_pkg_name)
 
-    local_version = packaging.version.Version(local_version)
+    local_pkg_name = packaging.version.Version(local_pkg_name)
     pypi_version = packaging.version.Version(pypi_version)
-    set_output("should-release", local_version > pypi_version)
+    set_output("should-release", local_pkg_name > pypi_version)
 
 
 # Local

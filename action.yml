@@ -66,6 +66,8 @@ runs:
       run: |
         python ${{github.action_path}}/src/compare_version.py \
           --pkg_name="${{ inputs.pkg-name }}"
+          --local_pkg_name="${{ inputs.local_pkg_name }}"
+          --pypi_pkg_name="${{ inputs.pypi_pkg_name }}"
       shell: bash
       working-directory: ${{ inputs.path }}
 

@@ -45,7 +45,6 @@ You can also chain this job with your unittests to only trigger release if tests
 ](https://keepachangelog.com/) format)
 * `path` (Optional): Directory of the project (containing the `pyproject.toml`). Default to `.`.
 * `pkg-name` (Optional): Package name (auto-detected).
-* `local-pkg-name` (Optional): local package name, if exists overrides pkg-name
 * `pypi-pkg-name` (Optional): pypi's package name, if exists overrides pkg-name
 * `git-ref` (Optional): Git ref (e.g. SHA or tag). If `git-ref: skip`, the repository is
   not checked out (this can be used to manually checkout and update the repo before publishing).

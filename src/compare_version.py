@@ -50,8 +50,8 @@ def main():
 
     args = parse_arguments()
     pkg_name = args.pkg_name
-    local_pkg_name = args.local_pkg_name if len(args.local_pkg_name) > 0 else pkg_name
-    pypi_pkg_name = args.pypi_pkg_name if len(args.pypi_pkg_name) > 0 else pkg_name
+    local_pkg_name = args.local_pkg_name if args.local_pkg_name is not None else pkg_name
+    pypi_pkg_name = args.pypi_pkg_name if args.pypi_pkg_name is not None else pkg_name
 
     if not pkg_name:  # pkg name and module names should match if missing
         pkg_name = find_pkg_name()

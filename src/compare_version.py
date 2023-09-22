@@ -63,8 +63,8 @@ def main():
     local_pkg_name = get_local_version(pkg_name)
     pypi_version = get_pypi_version(pypi_pkg_name)
 
-    set_output("local version", local_pkg_name)
-    set_output("pypi version", pypi_version)
+    set_output("local-version", local_pkg_name)
+    set_output("pypi-version", pypi_version)
 
     local_pkg_name = packaging.version.Version(local_pkg_name)
     pypi_version = packaging.version.Version(pypi_version)
